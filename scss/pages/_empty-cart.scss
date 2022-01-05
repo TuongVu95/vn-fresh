@@ -1,0 +1,8 @@
+.cart-status {
+  max-width: 576px;
+  width: 100%;
+  margin: 0 auto;
+  @include respond-to("sm") {
+    border-radius: 0;
+  }
+}

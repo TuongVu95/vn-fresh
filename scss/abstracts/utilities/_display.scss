@@ -1,16 +1,25 @@
-.block{display: block}
-.none-block{
+.block {
+    display: block;
+}
+.none-block {
     display: none;
-    @include respond-to('md'){
+    @include respond-to("md") {
         display: block;
     }
 }
-.block-none{
+.block-none {
     display: block;
-    @include respond-to('md'){
+    @include respond-to("md") {
         display: none;
     }
 }
-.hidden{
+.hidden {
     display: none;
+}
+
+.inline-flex-none {
+    display: inline-flex;
+    @include respond-to("md") {
+        display: none;
+    }
 }

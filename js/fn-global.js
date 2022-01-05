@@ -17,7 +17,27 @@ vnSlide = () => {
     })
 };
 
+vnSlidePast = () => {
+    new Swiper(".vnSlidePast", {
+        cssMode: !0,
+        spaceBetween: 0,
+        slidesPerView: 'auto',
+        slidesPerGroup: 2,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+        },
+        breakpoints: {
+            992: {
+                slidesPerGroup: 4,
+                slidesPerView: 4,
+            },
+        },
+    })
+}
+
 let init = () => {
     vnSlide();
+    vnSlidePast();
 };
 init();
