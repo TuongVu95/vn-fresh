@@ -1,0 +1,105 @@
+// breadcrumb-variables
+$breadcrumb-item-padding-x: 8px !default;
+$breadcrumb-item-padding-x-mb: $spacing !default;
+$breadcrumb-dark-color: $white !default;
+$breadcrumb-divider-color: $gray-400 !default;
+$breadcrumb-darkmode-active-color: $gray-400 !default;
+$breadcrumb-active-color: $gray-700 !default;
+$breadcrumb-mobile-color: $gray-700 !default;
+$breadcrumb-divider: quote("/") !default;
+$breadcrumb-size-background: 0 !default;
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+
+    $this: &;
+
+    padding: 6px 0;
+
+    @include respond-to("md") { //responsive
+        @extend .p-y-md-6, .fs-p-md-12, .p-x-md-10;
+        // margin: 0 -10px !important;
+        background:  $gray-100;
+    }
+}
+
+.breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    & + &:before {
+        content: $breadcrumb-divider;
+        display: inline-block;
+        color: $breadcrumb-divider-color;
+        @extend .p-x-8, .fs-ui-16;
+        line-height: 100%;
+    }
+
+    &.active a,
+    &.active {
+        color: $breadcrumb-active-color;
+        background-size: $breadcrumb-size-background;
+        cursor: auto;
+    }
+
+
+
+    a { @extend .fs-p-14; }
+
+    @include respond-to("md") { //responsive
+        a, i {
+            color: $breadcrumb-mobile-color;
+        }
+
+        & + &:before {
+            padding: 0 $breadcrumb-item-padding-x-mb;
+        }
+    }
+}
+
+.breadcrumb-arrow {
+    $this: ".breadcrumb";
+    #{$this}-item {
+        & + #{$this}-item {
+            @extend .ic-angle-right, .fs-ui-12;
+            &::before {
+                font-family: $font-icon-family;
+                @extend .fs-ui-12;
+            }
+            @include respond-to("md") { //responsive
+                &::before {
+                    @extend .fs-ui-md-10;
+                }
+            }
+        }
+    }
+}
+
+.dark-mode {
+    * {
+        color: $breadcrumb-dark-color;
+    }
+    a{
+        @media(min-width: 992px){
+            @include hoverLink($white);
+        }
+    }
+    .breadcrumb-item {
+        &:last-child a,
+        &:last-child {
+            color: $breadcrumb-darkmode-active-color !important;
+        }
+    }
+    @include respond-to("md") { //responsive
+        .breadcrumb-item {
+            &:last-child a,
+            &:last-child {
+                color: $breadcrumb-mobile-color !important;
+            }
+        }
+        &::before {
+            @extend .fs-ui-md-10;
+        }
+    }
+}

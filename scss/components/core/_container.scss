@@ -1,0 +1,58 @@
+// Container widths
+//
+.relative {
+    position: relative ;
+  }
+
+  @if $enable-grid-classes {
+    .container {
+      @include max-container();
+      @include make-container-max-widths();
+
+      //mobile
+      @include respond-to('md') {
+        padding: 0 10px ;
+      }
+
+      @include respond-to('sm') {
+        @include containermb();
+      }
+    }
+
+      .lc-main{
+        .container{
+          @include respond-to('md') {
+          @extend .p-x-md-0;
+        }
+      }
+    }
+
+
+    // @each $breakpoint, $container-max-width  in $container-max-widths  {
+    //     // @debug $breakpoint - $container-max-width;
+    //     @include media-breakpoint-down($breakpoint, $grid-breakpoints) {
+    //         %responsive-container-#{$breakpoint} {
+    //             max-width: $container-max-width;
+    //         }
+    //         // extend each breakpoint
+    //         $extend-breakpoint: true;
+
+    //         @each $name, $width in $grid-breakpoints {
+    //             // @debug $breakpoint - $name;
+    //             @if ($extend-breakpoint) {
+    //                 .container {
+    //                     @extend %responsive-container-#{$breakpoint};
+    //                 }
+    //             }
+
+    //             @if($breakpoint == $name){
+    //                 $extend-breakpoint: false;
+    //             }
+    //         }
+    //     }
+
+    // }
+  }
+  .disable-scroll{
+    overflow: hidden;
+  }

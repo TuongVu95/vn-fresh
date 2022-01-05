@@ -1,0 +1,15 @@
+@import 'utilities/_txt-color';
+@import 'utilities/_background';
+@import 'utilities/_flex';
+@import 'utilities/_position';
+@import 'utilities/_display';
+@import 'utilities/_float';
+
+.circle{border-radius: 10000px;}
+@include respond-to('md'){
+    .circle-mb{border-radius: 10000px;}
+}
+.overflow-hidden{ overflow: hidden; }
+.radius-12{
+border-radius: 12px;
+}

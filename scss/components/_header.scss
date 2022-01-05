@@ -1,0 +1,125 @@
+
+.vn__header{
+    position: relative;
+    &-top{
+        background: #1D371E;
+    }
+    &-logo{
+        picture{
+            max-width: 40px;
+        }
+        @include respond-to('md'){
+            a{
+                margin-bottom: 12px;
+                p{
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+
+    &-bottom{
+        background: $gray-900;
+    }
+
+    &-search{
+        .form-group{
+            max-width: 540px;
+            @extend .m-x-auto;
+        }
+        .form-search{
+            border-radius: 1000px;
+            border: none;
+            padding-right: 64px;
+        }
+        .form-search-input{
+            font-size: 14px;
+            line-height: 20px;
+        }
+        .btn-search{
+            margin-left: -51px;
+        }
+        button{
+            width: 52px;
+            height: 36px;
+
+            background: #212529;
+            border-radius: 0px 1000px 1000px 0px;
+        }
+    }
+
+    @include respond-to('md'){
+        .row{
+            margin: 0;
+        }
+        .col, .col-auto, .col-cart{
+            padding: 0;
+        }
+        .col-cart{
+            position: absolute;
+            right: 10px;
+        }
+    }
+}
+.vn__header-bottom{
+    ul{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+    }
+    li{
+        a{
+            @extend .txt-white;
+            // padding: 7px 0;
+
+            display: flex;
+            align-items: center;
+
+            height: 32px;
+            i{
+                margin: -2px 4px 0 0;
+                font-size: 16px;
+                line-height: 100%;
+            }
+            span{
+                font-weight: 500;
+                font-size: 15px;
+                line-height: 100%;
+            }
+        }
+    }
+    a{
+        transition: .3s ease-in;
+        background-image: unset;
+        &:hover,&.active{
+            box-shadow: inset 0px -3px 0px $white;
+            @extend .f-w-500;
+        }
+    }
+    @include respond-to('md'){
+        ul{
+            white-space: nowrap;
+            overflow-x: scroll;
+            li{
+                &:not(:last-child){
+                    margin-right: 24px;
+                }
+            }
+        }
+        li{
+            a{
+                i{
+                    margin: -2px 4px 0 0;
+                    font-size: 14px;
+                }
+                span{
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
+.vn__cart{
+    cursor: pointer;
+}

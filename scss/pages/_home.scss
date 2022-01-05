@@ -1,0 +1,86 @@
+.vn__home {
+    // background: url(../images/home.jpg) no-repeat top center;
+    // background-size: 100% 100%;
+    background: linear-gradient(180deg, #ffedab 0%, #ffd3ab 100%);
+    .vn__section {
+        &-inner {
+            box-shadow: 0px 1px 4px rgba(10, 10, 10, 0.15);
+        }
+    }
+    .title-wrap {
+        padding: 0 16px;
+        margin-bottom: 12px;
+    }
+    @include respond-to("md") {
+        .container {
+            overflow: hidden;
+        }
+        .title-wrap {
+            padding: 0 10px;
+            margin-bottom: 8px;
+        }
+        .vn__section {
+            overflow: hidden;
+            &-inner {
+                overflow: hidden;
+                padding-bottom: 0 !important;
+            }
+            &-title {
+                font-size: 16px !important;
+                line-height: 24px !important;
+            }
+        }
+    }
+}
+.vn__social {
+    background: $gray-200;
+
+}
+.social {
+    &-label {
+        margin-right: 24px;
+    }
+    &-list {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    &-item {
+        &:not(:last-child) {
+            margin-right: 24px;
+        }
+    }
+
+    @include respond-to('xxs'){
+        &-item {
+            &:not(:last-child) {
+                margin-right: 12px;
+            }
+        }
+    }
+}
+.scrollY-product {
+    @include respond-to("md") {
+        overflow-y: scroll;
+        // white-space: nowrap;
+        flex-wrap: nowrap;
+        margin: 0;
+        .col {
+            width: calc(100% / 2.5);
+        }
+    }
+}
+@include respond-to("md") {
+    wrapper{
+        max-width: 768px;
+        margin: auto;
+        display: block;
+        min-width: 320px;
+    }
+   body,html{
+       overflow-x: hidden;
+   }
+}
+
+@import "../components/home/_slide-banner";
+@import "../components/home/_banner-html";

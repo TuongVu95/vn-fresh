@@ -1,0 +1,438 @@
+$btn-size: (
+  "xl": (
+    padding: "0 36px",
+    height: "56px",
+    width: "56px",
+  ),
+  "lg": (
+    padding: "0 32px",
+    height: "36px",
+    width: "36px",
+  ),
+  "md": (
+    padding: "0 20px",
+    height: "32px",
+    width: "32px",
+  ),
+  "sm": (
+    padding: "0 16px",
+    height: "28px",
+    width: "28px",
+  ),
+  "xs": (
+    padding: "0 16px",
+    height: "24px",
+    width: "24px",
+  ),
+  "xxs": (
+    padding: "0 16px",
+    height: "20px",
+    width: "20px",
+  ),
+);
+$link-icon-size: (
+  "xl": (
+    font-size: "20px",
+    icon-size: "16px",
+  ),
+  "lg": (
+    font-size: "16px",
+    icon-size: "16px",
+  ),
+  "md": (
+    font-size: "16px",
+    icon-size: "14px",
+  ),
+  "sm": (
+    font-size: "14px",
+    icon-size: "14px",
+  ),
+  "xs": (
+    font-size: "14px",
+    icon-size: "14px",
+  ),
+  "xxs": (
+    font-size: "12px",
+    icon-size: "10px",
+  ),
+);
+
+$btn-font-size: (
+  "xl": 20px,
+  "lg": 16px,
+  "md": 16px,
+  "sm": 14px,
+  "xs": 14px,
+  "xxs": 12px,
+);
+
+// button have icon and text
+$btn-icon-padding: (
+  "xl": (
+    padding-left: "36px",
+    padding-right: "24px",
+  ),
+  // question ?
+  "lg":
+    (
+      padding-left: "24px",
+      padding-right: "16px",
+    ),
+  //
+  "md":
+    (
+      padding-left: "16px",
+      padding-right: "12px",
+    ),
+  "sm": (
+    padding-left: "16px",
+    padding-right: "12px",
+  ),
+  "xs": (
+    padding-left: "12px",
+    padding-right: "12px",
+  ),
+  "xxs": (
+    padding-left: "12px",
+    padding-right: "12px",
+  ),
+);
+
+$btn-icon-props: (
+  "xl": (
+    margin-icon: "14px",
+    font-size: "28px",
+  ),
+  "lg": (
+    margin-icon: "8px",
+    font-size: "20px",
+  ),
+  "md": (
+    margin-icon: "4px",
+    font-size: "16px",
+  ),
+  "sm": (
+    margin-icon: "4px",
+    font-size: "16px",
+  ),
+  "xs": (
+    margin-icon: "4px",
+    font-size: "14px",
+  ),
+  "xxs": (
+    margin-icon: "4px",
+    font-size: "12px",
+  ),
+);
+@mixin hoverLink($color: $link){
+  background-image: linear-gradient(transparent calc(100% - 1px), $color 1px);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  user-select: none;
+  font-family: inherit;
+  border-radius: $border-radius;
+  transition: $btn-transition;
+  padding: 8px 20px;
+  border: 1px solid transparent;
+  cursor: pointer;
+
+  span:nth-child(1) {
+    font-weight: 500;
+  }
+
+  &-xl,
+  &-lg,
+  &-md {
+    border-radius: $border-radius;
+  }
+  &-sm,
+  &-xs {
+    border-radius: $border-radius + 2;
+  }
+  &-rounded {
+    border-radius: 100px;
+  }
+  &-outline-gray {
+    color: $gray-600 !important;
+    @media (min-width: 992px) {
+      &:hover {
+        color: $white !important;
+      }
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    color: $white;
+    background: $value;
+    outline: none;
+  }
+}
+
+@each $color, $value in $theme-colors-hover {
+  .btn-#{$color} {
+    &:hover {
+      background: $value;
+      border: 1px solid #{$value};
+    }
+  }
+}
+
+@each $color, $value in $theme-colors-disable {
+  .btn-#{$color} {
+    &:disabled {
+      background: $value;
+      pointer-events: none;
+    }
+    &:active {
+      //note
+      box-shadow: 0 0 0 1.6px $value;
+    }
+  }
+}
+
+// btn padding and height
+@each $breakpoint, $value in $grid-breakpoints-mb {
+  $infix: breakpoint-infix($breakpoint, $grid-breakpoints-mb);
+  @include media-breakpoint-down($breakpoint, $grid-breakpoints-mb) {
+    @each $size, $value in $btn-font-size {
+      .btn-#{$size}#{$infix} {
+        font-size: $value;
+        line-height: $value;
+      }
+    }
+    @each $size, $detail in $btn-size {
+      // @debug $detail;
+      $padding: map-get($detail, "padding");
+      $height: map-get($detail, "height");
+      $keys: map-keys($detail); // padding, height,width (get keys of detail);
+      .btn-#{$size}#{$infix} {
+        padding: #{$padding};
+        height: #{$height};
+        @if ($size == "xl") {
+          span:nth-child(2) {
+            font-size: 14px;
+            line-height: 20px;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin btn-single($bool: false) {
+  @each $size, $detail in $btn-size {
+    $width: map-get($detail, "width");
+    @if $bool {
+      &.btn-#{$size} {
+        width: #{$width};
+        padding: 0;
+      }
+    }
+  }
+}
+
+@mixin btn-icon($bool: false) {
+  @if $bool {
+    flex-direction: row;
+    .btn-inside {
+      display: flex;
+      flex-direction: column;
+    }
+    [class^="ic-"]:not(.btn-icon-search),
+    [class*="ic-"]:not(.btn-icon-search) {
+      display: inline-block;
+      text-align: center;
+    }
+    @each $size, $detail in $btn-icon-props {
+      $font-size: map-get($detail, "font-size");
+      &.btn-#{$size} {
+        [class^="ic-"],
+        [class*=" ic-"] {
+          font-size: #{$font-size};
+          width: #{$font-size};
+        }
+      }
+    }
+  }
+}
+@mixin btn-icon-direction($direction: "") {
+  // each for all btn
+  // check icon on button posittion left or right
+  @each $size, $detail in $btn-icon-props {
+    // @debug $size;
+    $margin-icon: map-get($detail, "margin-icon");
+    @if $direction == "right" {
+      &.btn-#{$size} {
+        [class^="ic-"],
+        [class*=" ic-"] {
+          margin-left: #{$margin-icon};
+        }
+      }
+    } @else {
+      &.btn-#{$size} {
+        flex-direction: row-reverse;
+        [class^="ic-"],
+        [class*=" ic-"] {
+          margin-right: #{$margin-icon};
+        }
+      }
+    }
+  }
+
+  // set prop for search icon
+
+  @each $size, $detail in $btn-icon-padding {
+    $padding-left: map-get($detail, "padding-left");
+    $padding-right: map-get($detail, "padding-right");
+    @if $direction == right {
+      &.btn-#{$size} {
+        padding-left: #{$padding-left};
+        padding-right: #{$padding-right};
+      }
+    } @else {
+      &.btn-#{$size} {
+        padding-left: #{$padding-right};
+        padding-right: #{$padding-left};
+      }
+    }
+  }
+}
+
+// set prop for search icon
+
+// btn outline
+@each $color, $value in $theme-colors {
+  .btn-outline-#{$color} {
+    color: #{$value};
+    background: $white;
+    border: solid 1px #{$value};
+    @media (min-width: 992px) {
+      &:hover {
+        color: $white;
+        background: #{$value};
+        border: solid 1px #{$value};
+      }
+    }
+    &.btn-xl,
+    &.btn-lg {
+      border: solid 2px #{$value};
+    }
+  }
+}
+
+.btn-outline-gray {
+  &.btn-xl,
+  &.btn-lg,
+  &.btn-md,
+  &.btn-sm,
+  &.btn-xs,
+  &.btn-xxs {
+    border: solid 1px $gray-300;
+    color: $gray-600;
+    &:hover {
+      border: solid 1px $gray-500;
+      color: #fff;
+    }
+  }
+}
+
+// btn outline focus color
+@each $color, $value in $theme-colors-disable {
+  .btn-outline-#{$color} {
+    &:disabled {
+      background: $value;
+      pointer-events: none;
+    }
+    &:active,
+    &:focus {
+      outline: none;
+      // note
+      box-shadow: 0 0 0 0.1rem $value;
+    }
+  }
+}
+
+// btn number
+.btn-number {
+  @include btn-single($bool: true);
+}
+
+.btn-icon-single {
+  @include btn-single($bool: true);
+}
+
+// btn icon
+.btn-icon {
+  @include btn-icon($bool: true);
+}
+
+.btn-icon-left {
+  @include btn-icon-direction("left");
+}
+.btn-icon-right {
+  @include btn-icon-direction("right");
+}
+
+// btn style
+.btn-square {
+  border-radius: 0;
+}
+
+.link {
+  color: $info;
+  position: relative;
+  display: inline;
+  cursor: pointer;
+
+  @media (min-width: 992px) {
+    background-image: linear-gradient(transparent calc(100% - 1px), $info 1px);
+    background-size: 0% 100%;
+    background-repeat: no-repeat;
+
+    transition: all $transition-duration-sm ease, -webkit-transform $transition-duration-sm ease;
+
+    &:hover {
+      background-size: 100% 100%;
+    }
+  }
+
+  @each $breakpoint, $value in $grid-breakpoints-mb {
+
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints-mb);
+    // @debug $infix;
+    @include media-breakpoint-down($breakpoint, $grid-breakpoints-mb) {
+
+      @each $size, $value in $link-icon-size {
+
+        $font-size: map-get($value, "font-size");
+        $icon-size: map-get($value, "icon-size");
+
+        &-#{$size}-#{$infix} {
+
+          font-size: #{$font-size};
+          line-height: #{$font-size};
+
+          @if (($size == "xl" or ($size == "lg") or ($size == "sm"))) {
+            font-weight: 500;
+          } @else {
+            font-weight: 400;
+          }
+          i {
+            font-size: #{$icon-size};
+          }
+        }
+      }
+    }
+  }
+  &-icon {
+    display: inline-flex;
+    align-items: center;
+  }
+}

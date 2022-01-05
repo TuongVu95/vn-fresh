@@ -1,0 +1,16 @@
+.block{display: block}
+.none-block{
+    display: none;
+    @include respond-to('md'){
+        display: block;
+    }
+}
+.block-none{
+    display: block;
+    @include respond-to('md'){
+        display: none;
+    }
+}
+.hidden{
+    display: none;
+}

@@ -1,0 +1,28 @@
+.border-default{
+        border: 1px solid $gray-300;
+}
+.radius-6{ border-radius: 6px}
+.card{
+        position: relative;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        min-width: 0;
+        word-break: break-word;
+        background-color: #fff;
+        background-clip: border-box;
+        -webkit-box-shadow: 0 0 3px 0 #dee2e6;
+        box-shadow: 0 0 3px 0 #dee2e6;
+        border-radius: 6px;
+}
+@import "../components/core/_container";
+@import "../components/core/_grid";
+@import "../components/core/_button";
+@import "../components/core/_badge";
+@import "../components/core/_typography";
+@import "../components/core/_form";
+@import "../components/core/_breadcrumb";

@@ -1,0 +1,234 @@
+$xs-xxs: 24px;
+$badge-fill-out: (
+    "md": (
+        fs: 16px,
+        m-icon: 8px,
+        padding: 12px,
+        height: 32px,
+        width-height-icon: 32px,
+    ),
+    "xs": (
+        fs: 14px,
+        m-icon: 8px,
+        padding: 8px,
+        height: 24px,
+        width-height-icon: 24px,
+    ),
+    "xxs": (
+        fs: 12px,
+        m-icon: 4px,
+        padding: 8px,
+        height: 20px,
+        width-height-icon: 20px,
+    ),
+);
+$theme-badge-subtle: (
+    "primary": (
+        bg: $primary-100,
+        color: $primary,
+        ic: $primary,
+        bg-ic: $primary-200,
+    ),
+    "gray": (
+        bg: $gray-100,
+        color: $gray-700,
+        ic: $gray-500,
+        bg-ic: $gray-200,
+    ),
+    "success": (
+        bg: $success-100,
+        color: $success-700,
+        ic: $success,
+        bg-ic: $success-200,
+    ),
+    "info": (
+        bg: $info-100,
+        color: $info-700,
+        ic: $info,
+        bg-ic: $info-200,
+    ),
+    "warning": (
+        bg: $warning-100,
+        color: $warning-700,
+        ic: $warning,
+        bg-ic: $warning-200,
+    ),
+    "danger": (
+        bg: $danger-100,
+        color: $danger-700,
+        ic: $danger,
+        bg-ic: $danger-200,
+    ),
+);
+%icon {
+    display: inline-block;
+    text-align: center;
+}
+%border-gray300 {
+    box-shadow: 0 0 0 1px $gray-300;
+}
+.badge {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+    cursor: pointer;
+    vertical-align: middle;
+    &-md {
+        border-radius: $border-radius-lg;
+        .icon-right {
+            border-radius: 0px 8px 8px 0px;
+            &:before{
+                font-size: 12px;
+            }
+        }
+    }
+    &-xs,
+    &-xxs {
+        border-radius: $border-radius-md;
+        .icon-right {
+            border-radius: 0px $border-radius-md $border-radius-md 0px;
+            &:before{
+                font-size: 10px;
+            }
+        }
+    }
+
+    &-circle {
+        border-radius: 100px;
+        .icon-right{
+            border-radius: 0 100px 100px 0;
+        }
+    }
+
+    .icon-left {
+        margin-right: 4px;
+        font-size: inherit;
+    }
+    .icon-right {
+        @extend %icon;
+        margin-left: 8px;
+        cursor: pointer;
+        font-weight: 500;
+    }
+    @each $key, $value in $theme-colors {
+        &-#{$key} {
+            color: $white;
+            background-color: $value;
+            border: 1px solid $value;
+        }
+        &-outline-#{$key} {
+            color: $value;
+            border: 1px solid $value;
+            [class*='ic-']{
+                color: inherit;
+            }
+            i.icon-right{
+                // width: auto;
+                // height: auto;
+                margin-right: 0;
+            }
+        }
+    }
+    @each $key, $value in $theme-badge-subtle {
+        $ic: map-get($value, 'ic');
+        $bg: map-get($value, 'bg');
+        $color: map-get($value, 'color');
+        $bg-ic: map-get($value, 'bg-ic');
+        // @debug $value;
+        &-sub-#{$key} {
+            color: $gray-700;
+            background-color: $bg;
+            border: 1px solid $bg;
+            &.badge-sub-ic{
+                color: $color;
+            }
+            .icon-right{
+                background-color: $bg-ic;
+                color: $ic;
+            }
+            .icon-left{
+                color: $ic;
+            }
+
+        }
+    }
+
+    // @each $key, $value in $theme-colors-hover {
+    //     &-#{$key} {
+    //         .icon-right {
+    //             background-color: $value;
+    //         }
+    //     }
+    // }
+
+    @each $breakpoint, $value in $grid-breakpoints-mb {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints-mb);
+        @include media-breakpoint-down($breakpoint, $grid-breakpoints-mb) {
+            @each $key, $value in $badge-fill-out {
+                $fs: map-get($value, "fs");
+                $height: map-get($value, "height");
+                $padding: map-get($value, "padding");
+                $margin-icon: map-get($value, "m-icon");
+                $width-height: map-get($value, "width-height-icon");
+                &#{$infix}-#{$key} {
+                    font-size: $fs;
+                    height: $height;
+                    line-height: $height;
+                    padding-right: $padding;
+                    padding-left: $padding;
+
+                    &[class*="badge-sub"]{
+                        .icon-right {
+                            width: $width-height;
+                            height: $width-height;
+                            line-height: calc(#{$width-height} - 2px);
+                        }
+                    }
+                    .icon-right {
+                        // width: $width-height;
+                        // height: $width-height;
+                        // line-height: calc(#{$width-height} - 2px);
+                        margin-left: $margin-icon;
+                        margin-right: -$padding;
+                    }
+                }
+                &#{$infix}-#{$key}-ic {
+                    .icon-right{
+                        // margin-left: $padding;
+                    }
+                }
+            }
+        }
+    }
+    &-md{
+        .icon-right {
+            width: 16px;
+            height: 16px;
+            line-height: 14px;
+        }
+    }
+    &-xs{
+        .icon-right {
+            width: 14px;
+            height: 14px;
+            line-height: 12px;
+        }
+    }
+    &-xxs {
+        &[class*="badge-sub"]{
+            font-weight: 500;
+        }
+        .icon-right {
+            width: 12px;
+            height: 12px;
+            line-height: 10px;
+        }
+    }
+}
+.badge-gray,
+.badge-outline-gray {
+    // @extend %border-gray300;
+    border: 1px solid $gray-300;
+}
