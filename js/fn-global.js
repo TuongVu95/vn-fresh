@@ -1,8 +1,28 @@
 var jDocument = $(document), widthWindow = $(window).width(), responsive = widthWindow > 992;
 
 jDocument.ready(function () {
+    // Init checked radio button
+    $('.check-form').checkList();
 
 });
+
+jQuery.fn.extend({
+    checkList: function () {
+        return this.each(function (e) {
+            var option = $(this).find('.radio');
+            option.on('click', function () {
+                option.removeClass('checked');
+                $(this).addClass('checked');
+            });
+        });
+    },
+});
+
+
+
+
+
+
 
 vnSlide = () => {
     new Swiper(".vnSlide1", {

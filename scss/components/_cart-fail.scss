@@ -1,0 +1,48 @@
+.cart__fail-body {
+  max-width: 576px;
+  margin: auto;
+  box-shadow: 0px 1px 4px rgba(10, 10, 10, 0.15);
+  .list-group {
+    li {
+      display: block;
+      padding-left: 14px;
+      position: relative;
+      font-size: 16px;
+      line-height: 24px;
+      &:not(:last-child) {
+        margin-bottom: 8px;
+      }
+      &:before {
+        font-family: "icon-system" !important;
+        content: "\e943";
+        font-size: 6px;
+        display: inline-block;
+        position: absolute;
+        top: 6px;
+        left: 1px;
+        color: #718198;
+        line-height: 100%;
+      }
+      a {
+        display: inline-block;
+        color: #1d48ba;
+        position: relative;
+        cursor: pointer;
+        &:before {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          height: 1px;
+          transition: transform 0.6s ease, -webkit-transform 0.6s ease;
+        }
+      }
+      @include respond-to("md") {
+        padding-left: 12px;
+        font-size: 14px;
+        line-height: 20px;
+      }
+    }
+  }
+}

@@ -19,6 +19,7 @@
 @import "components/_news";
 @import "components/_hotsale";
 @import "components/_footer";
+@import "components/cart-fail";
 
 //pages
 @import "pages/_home";
@@ -35,4 +36,16 @@ a {
         max-width: 768px;
         margin: auto;
     }
+}
+
+.box-b-1 {
+    box-shadow: inset 0px -1px 0px #e4eaf1;
+}
+
+.txt-blue {
+    color: #1d48ba;
+}
+
+.circle {
+    border-radius: 1000px;
 }
