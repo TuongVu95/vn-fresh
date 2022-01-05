@@ -147,6 +147,8 @@
     position: relative;
     background: #fff;
     width: 100%;
+    overflow: hidden;
+    border-radius: 6px;
     &-box {
         display: -webkit-box;
         display: -ms-flexbox;
@@ -256,17 +258,11 @@
         cursor: pointer;
         overflow: hidden;
         background-color: #fff;
-        -webkit-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
         transition: all 0.3s ease;
         font-weight: 400;
         font-size: 14px;
         line-height: 20px;
-        display: -webkit-inline-box;
-        display: -ms-inline-flexbox;
         display: inline-flex;
-        -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
         justify-content: space-between;
         position: relative;
         [class*="ic-"],
@@ -312,27 +308,22 @@
         z-index: 95;
         left: -1px;
         top: calc(100% + 4px);
-        width: -webkit-max-content;
-        width: -moz-max-content;
         width: max-content;
         min-width: 100%;
         max-width: 376px;
         padding-bottom: 1px;
         background-color: #fff;
-        -webkit-box-sizing: border-box;
-        box-sizing: border-box;
         border-radius: 4px;
         border: solid 1px #cbd1d6;
         overflow: hidden;
-        -webkit-box-shadow: 0 2px 6px 1px rgba(181, 181, 181, 0.5);
         box-shadow: 0 2px 6px 1px rgba(181, 181, 181, 0.5);
-        -webkit-transform: translateY(4px);
-        -ms-transform: translateY(4px);
         transform: translateY(4px);
-        -webkit-transition: all 0.3s ease;
-        -o-transition: all 0.3s ease;
         transition: all 0.3s ease;
-
+        &.open{
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
         &__wrapper {
             font-size: 0;
             max-height: 320px;

@@ -149,21 +149,23 @@
 }
 
 .st-pd__slider {
-    .swiper-pagination {
-        position: relative;
-        bottom: 0;
+
+}
+
+.swiper-pagination {
+    position: relative;
+    bottom: 0;
+    height: 4px;
+    margin-top: 4px;
+    &-bullet {
+        width: 40px;
         height: 4px;
-        margin-top: 4px;
-        &-bullet {
-            width: 40px;
-            height: 4px;
-            background: #cbd1d6;
-            border-radius: 100px;
-            opacity: 1;
-            vertical-align: top;
-            &-active{
-                background: $primary;
-            }
+        background: #cbd1d6;
+        border-radius: 100px;
+        opacity: 1;
+        vertical-align: top;
+        &-active{
+            background: $primary;
         }
     }
 }

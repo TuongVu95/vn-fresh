@@ -1,0 +1,152 @@
+.vn__cate{
+    background: $gray-100;
+    padding-bottom: 32px;
+    @include respond-to('md'){
+        padding-bottom: 20px;
+        .cdt-banner{
+            .container{
+                padding: 0;
+            }
+            .carousel-control{
+                display: none;
+            }
+        }
+    }
+}
+.cate-slide {
+    .swiper-slide {
+        picture{
+            @include aspect-ratio(1176,300,0);
+        }
+        img {
+            border-radius: 6px;
+            object-fit: cover;
+        }
+    }
+    .swiper-pagination {
+        bottom: 0;
+    }
+    @include respond-to('md'){
+        .swiper-slide {
+            picture{
+                @include aspect-ratio(640,250,0);
+            }
+            img {
+                border-radius: 0;
+
+            }
+        }
+    }
+}
+.cdt-product{
+    @extend .m-t-24;
+    @include respond-to('md'){
+        @extend .m-t-md-20;
+        .container{
+            padding: 0 !important;
+        }
+    }
+}
+.cdt-normal {
+    display: flex;
+    padding: 16px;
+    .cdt-list-tab {
+        display: flex;
+        flex: 1;
+        align-items: center;
+        span {
+            @extend .fs-p-16, .m-r-8;
+            color: $gray-700;
+        }
+        .listfilterv4 {
+            display: flex;
+            box-sizing: border-box;
+        }
+        @include respond-to('md'){
+            span{
+                display: none;
+            }
+        }
+    }
+    .listfilterv4{
+        a{
+            padding: 7px 12px !important;
+        }
+        li{
+            &.active a{
+                background: $primary;
+                border-color: $primary;
+                color: $white !important;
+            }
+            &:not(:first-child) a{
+                border-left: 0;
+            }
+            &:first-child a{
+                border-radius: 4px 0px 0px 4px;
+            }
+            &:last-child a{
+                border-radius: 0px 4px 4px 0px;
+            }
+        }
+        @include respond-to('md'){
+            a{
+                font-size: 14px;
+                line-height: 14px;
+            }
+        }
+    }
+    @include respond-to('md'){
+        padding: 16px 10px;
+    }
+}
+.cdt-grid-list{
+    display: flex;
+    align-items: center;
+    .c-dropdown{
+        margin-right: 8px;
+    }
+    .grid-icon{
+        color: $gray;
+        font-size: 24px;
+        line-height: 100%;
+
+        cursor: pointer;
+        &.active{
+            color: $primary;
+        }
+        &:not(:last-child){
+            margin-right: 8px;
+        }
+    }
+    @include respond-to('md'){
+        display: none;
+    }
+}
+.cdt-body{
+    padding-bottom: 16px;
+}
+.cdt-view{
+    margin-top: 12px;
+    > * {
+        flex-direction: row;
+        color: $gray-700;
+        padding: 10px 12px 10px 16px;
+        i{
+            margin-left: 4px;
+            font-size: 20px;
+            line-height: 100%;
+        }
+    }
+    @include respond-to('md'){
+        > * {
+            border: none;
+            padding: 0;
+            color: #0f71fb !important;
+            font-size: 14px;
+            line-height: 14px;
+            i{
+                font-size: inherit;
+            }
+        }
+    }
+}

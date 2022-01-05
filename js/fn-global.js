@@ -20,4 +20,5 @@ vnSlide = () => {
 let init = () => {
     vnSlide();
 };
+
 init();

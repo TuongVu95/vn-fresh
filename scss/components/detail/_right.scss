@@ -37,6 +37,36 @@
         }
     }
 }
+.st-pd-content {
+    margin-bottom: 16px;
+    p,ul li {
+        font-size: 16px;
+        line-height: 24px;
+        color: #444b52;
+    }
+    p{
+        &:not(:last-child){
+            margin-bottom: 12px;
+        }
+    }
+    ul li {
+        &:not(:last-child){
+            margin-bottom: 4px;
+        }
+    }
+    @include respond-to('md'){
+        p,ul li {
+            font-size: 14px;
+            line-height: 20px;
+        }
+        p{
+            &:not(:last-child){
+                margin-bottom: 8px;
+            }
+        }
+    }
+}
+
 .st-pd-table {
     border-collapse: collapse;
     width: 100%;
