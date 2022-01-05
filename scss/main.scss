@@ -24,11 +24,12 @@
 @import "pages/_home";
 @import "pages/_detail";
 @import "pages/_comment";
-a{
+@import "pages/complete-cart";
+a {
     color: $gray;
 }
-.vn__wrapper{
-    @include respond-to('md'){
+.vn__wrapper {
+    @include respond-to("md") {
         max-width: 768px;
         margin: auto;
     }
